@@ -3,10 +3,10 @@
 int main()
 {
     View menu;
-    bool archivosParametrizados = menu.pantallaBienvenido();
+    bool archivosParametrizados = menu.mostrarPantallaBienvenido();
     if (archivosParametrizados)
     {
-        menu.visualizacionDatosExtra();
+        menu.mostrarDatosExtra();
         menu.buscarPorPalabraClaveYFormacion();
     }
     menu.salir();

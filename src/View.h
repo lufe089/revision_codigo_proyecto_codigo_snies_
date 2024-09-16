@@ -15,8 +15,8 @@ private:
 public:
     View();
     ~View();
-    bool pantallaBienvenido();
-    void visualizacionDatosExtra();
+    bool mostrarPantallaBienvenido();
+    void mostrarDatosExtra();
     void buscarPorPalabraClaveYFormacion();
     void salir();
     bool isConvetibleToInt(const string &);

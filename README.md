@@ -60,7 +60,7 @@ direction BT
         -int codigoDelMunicipioIes
         -string municipioDeDomicilioDeLaIes
         -int codigoSniesDelPrograma
-        -string programaAcademico
+        -string nombrePrograAcad
         -int idNivelAcademico
         -string nivelAcademico
         -int idNivelDeFormacion
@@ -81,80 +81,22 @@ direction BT
         -string departamentoDeOfertaDelPrograma
         -int codigoDelMunicipioPrograma
         -string municipioDeOfertaDelPrograma
-        -Vector<Consolidado*> consolidados
-        +ProgramaAcademico()
+        -Map<anio,Vector<Consolidado*>> consolidados
+        + ProgramaAcademico(int codigoSniesDelPrograma, string nombrePrograAcad)
         +~ProgramaAcademico()
-        +setCodigoDeLaInstitucion(int)
-        +setIesPadre(int)
-        +setInstitucionDeEducacionSuperiorIes(string)
-        +setPrincipalOSeccional(string)
-        +setIdSectorIes(int)
-        +setSectorIes(string)
-        +setIdCaracter(int)
-        +setCaracterIes(string)
-        +setCodigoDelDepartamentoIes(int)
-        +setDepartamentoDeDomicilioDeLaIes(string)
-        +setCodigoDelMunicipioIes(int)
-        +setMunicipioDeDomicilioDeLaIes(string)
-        +setCodigoSniesDelPrograma(int)
-        +setProgramaAcademico(string)
-        +setIdNivelAcademico(int)
-        +setNivelAcademico(string)
-        +setIdNivelDeFormacion(int)
-        +setNivelDeFormacion(string)
-        +setIdMetodologia(int)
-        +setMetodologia(string)
-        +setIdArea(int)
-        +setAreaDeConocimiento(string)
-        +setIdNucleo(int)
-        +setNucleoBasicoDelConocimientoNbc(string)
-        +setIdCineCampoAmplio(int)
-        +setDescCineCampoAmplio(string)
-        +setIdCineCampoEspecifico(int)
-        +setDescCineCampoEspecifico(string)
-        +setIdCineCodigoDetallado(int)
-        +setDescCineCodigoDetallado(string)
-        +setCodigoDelDepartamentoPrograma(int)
-        +setDepartamentoDeOfertaDelPrograma(string)
-        +setCodigoDelMunicipioPrograma(int)
-        +setMunicipioDeOfertaDelPrograma(string)
-        +getCodigoDeLaInstitucion()
-        +getIesPadre()
-        +getInstitucionDeEducacionSuperiorIes()
-        +getPrincipalOSeccional()
-        +getIdSectorIes()
-        +getSectorIes()
-        +getIdCaracter()
-        +getCaracterIes()
-        +getCodigoDelDepartamentoIes()
-        +getDepartamentoDeDomicilioDeLaIes()
-        +getCodigoDelMunicipioIes()
-        +getMunicipioDeDomicilioDeLaIes()
-        +getCodigoSniesDelPrograma()
-        +getProgramaAcademico()
-        +getIdNivelAcademico()
-        +getNivelAcademico()
-        +getIdNivelDeFormacion()
-        +getNivelDeFormacion()
-        +getIdMetodologia()
-        +getMetodologia()
-        +getIdArea()
-        +getAreaDeConocimiento()
-        +getIdNucleo()
-        +getNucleoBasicoDelConocimientoNbc()
-        +getIdCineCampoAmplio()
-        +getDescCineCampoAmplio()
-        +getIdCineCampoEspecifico()
-        +getDescCineCampoEspecifico()
-        +getIdCineCodigoDetallado()
-        +getDescCineCodigoDetallado()
-        +getCodigoDelDepartamentoPrograma()
-        +getDepartamentoDeOfertaDelPrograma()
-        +getCodigoDelMunicipioPrograma()
-        +getMunicipioDeOfertaDelPrograma()
-        +pushConsolidado(Consolidado*)
-        +getConsolidado()
+       
+        + getConsolidados()
+        - bool esExisteConsolidadoAnio(int anio): True existe ya un consolidado para ese año, False no existe
+        + void agregarConsolidado(int año, int semestre, TipoConsolidado tipo, string sexo, int valor)
+        - void agregarMatriculados (año, semestre, sexo, valor);
+        - void agregarGraduados(año, semestre, sexo, valor);
+        - void agregarInscritos(año, semestre, sexo, valor);
+        - void agregarAdmitidos(año, semestre, sexo, valor);
+
+        + getDatosFormatoString(string separador)
+        + gets
     }
+    class ProgramaConsulta
     class Consolidado {
         -int inscritos
         -int admitidos
@@ -163,29 +105,17 @@ direction BT
         -int graduados
         -int idSexo
         -string sexo
-        -int ano
+        -int anio
         -int semestre
-        +setIdSexo(int)
-        +setSexo(string)
-        +setAno(int)
-        +setSemestre(int)
-        +getIdSexo()
-        +getSexo()
-        +getAno()
-        +getSemestre()
-        +setInscritos(int)
-        +setAdmitidos(int)
-        +setMatriculadosPrimerSemestre(int)
-        +setMatriculados(int)
-        +setGraduados(int)
-        +getInscritos()
-        +getAdmitidos()
-        +getMatriculadosPrimerSemestre()
-        +getMatriculados()
-        +getGraduados()
+        + Consolidado(int anio, int semestre, string sexo)
+        + string consultarDatos()
+        + getDatosFormatoString(string separador)
+        +sets()
     }
     class GestorCsv {
         +GestorCsv() = default
+        +vector<string> leerArchivoCsv(string ruta)
+        +void escribirArchivoCsv(string ruta, vector<string> datos, vector<string> encabezados)
         +vector<int> leerProgramasCsv(string &ruta)
         +vector<vector<string>> leerArchivoPrimera(string &rutaBase, string &ano, vector<int> &codigosSnies)
         +vector<vector<string>> leerArchivoSegunda(string &rutaBase, string &ano, vector<int> &codigosSnies)
@@ -196,6 +126,7 @@ direction BT
     }
     class SNIESController {
         -map <int, ProgramaAcademico*> programasAcademicos
+        -map <int, string> programasAcademFiltro
         -GestorCsv gestorCsvObj
         -vector<string> etiquetasColumnas
         -string rutaProgramasCsv
@@ -208,6 +139,9 @@ direction BT
         +SNIESController("incializar con strings de rutas")
         +~SNIESController()
         +void procesarDatosCsv(string &ano1, string &ano2)
+        +void consolidarDatos(string ano1, string ano2)
+        - void cargarProgramasFiltros() LLama al CSV controller, crea un mapa con los programas académicos a filtrar 
+        - void cargarProgramasAcademicos() LLama al CSV controller, para cada archivo a leer: admitidos, graduados, inscritos, matriculados y matriculados por semestre recibe la cadena y la vuelve un programa académico, por cada 
         +void calcularDatosExtra(bool)
         +void buscarProgramas(bool, string &, int)
     }
@@ -215,8 +149,8 @@ direction BT
         SNIESController controlador
         +View()
         +~View()
-        +bool pantallaBienvenido()
-        +void visualizacionDatosExtra()
+        +bool mostrarPantallaBienvenido()
+        +void mostrarDatosExtra()
         +void buscarPorPalabraClaveYFormacion()
         +void salir()
         +bool isConvetibleToInt()

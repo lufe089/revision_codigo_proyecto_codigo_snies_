@@ -1,0 +1,4 @@
+Cannot generate into W:\GIT\RepositoriosCursosPOO\revision_codigo_proyecto_codigo_snies_
+It was created with incompatible generator 'NMake Makefiles'
+
+Please either delete it manually or select another generation directory
