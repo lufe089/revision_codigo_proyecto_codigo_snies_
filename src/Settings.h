@@ -29,6 +29,8 @@ public:
     static const std::string INSCRITOS_FILE_PATH;
     static const std::string PROGRAMAS_FILTRAR_FILE_PATH;
     static const std::string BASE_PATH;
+    static const std::string DELIMITADOR;
+
     // FIXME completar para el resto de constantes
 };
 
@@ -39,5 +41,6 @@ const std::string Settings::PROGRAMAS_FILTRAR_FILE_PATH = BASE_PATH + "programas
 const std::string Settings::ADMITIDOS_FILE_PATH = BASE_PATH + "admitidos.csv";
 const std::string Settings::MATRICULADOS_FILE_PATH = BASE_PATH + "matriculados.csv";
 const std::string Settings::INSCRITOS_FILE_PATH = BASE_PATH + "inscritos.csv";
+const std::string Settings::DELIMITADOR = ";";
 
 #endif // SETTINGS_H

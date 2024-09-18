@@ -114,8 +114,8 @@ direction BT
     }
     class GestorCsv {
         +GestorCsv() = default
-        +vector<string> leerArchivoCsv(string ruta)
-        +void escribirArchivoCsv(string ruta, vector<string> datos, vector<string> encabezados)
+        +vector <string> leerArchivoCSV(string ruta)
+        +void escribirArchivoCSV(string ruta, vector<string> datos, vector<string> encabezados)
         +vector<int> leerProgramasCsv(string &ruta)
         +vector<vector<string>> leerArchivoPrimera(string &rutaBase, string &ano, vector<int> &codigosSnies)
         +vector<vector<string>> leerArchivoSegunda(string &rutaBase, string &ano, vector<int> &codigosSnies)
